@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <meta name="description" content="Purchase VIP Rank on Refractal MC. £1.99">
+</head>
+
+<body id="page-top">
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="/">Refractal</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+                value="Menu"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="/">About</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger active" href="/shop">Shop</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="/#contact">contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="mobileShow" class="container"><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
+            <div
+                class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="mobileShow" class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="/">About</a></li>
+                    <li class="mobileShow" class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link active" href="/shop">Shop</a></li>
+                    <li class="mobileShow" class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link" href="/#contact">Contact</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image:url('/intro-bg.webp');">
+        <div class="intro-body">
+            <div class="container">
+                <h1 class="text-center vip">VIP Rank</h1>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-12"><img class="img-thumbnail img-fluid center-block" src="assets/img/videomicme.png"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-6 col-md-6"><img class="img-thumbnail img-fluid center-block" src="assets/img/videomic-me.gif"></div>
+                            <div class="col-6 col-sm-6 col-md-6"><img class="img-thumbnail img-fluid center-block" src="assets/img/videomic-me.gif"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-6 col-md-6"><img class="img-thumbnail img-fluid center-block" src="assets/img/videomic-me.gif"></div>
+                            <div class="col-6 col-sm-6 col-md-6"><img class="img-thumbnail img-fluid center-block" src="assets/img/videomic-me.gif"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h1><strong>VIP RANK</strong></h1>
+                        <p>This VIP Rank </p>
+                        <h2 class="text-center text-success">£1.99</h2><div id="paypal-button"></div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="map-clean"></div>
+    <footer>
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;Refractal LTD 2020</p>
+        </div>
+    </footer>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Animated-Pretty-Product-List-v12.css">
+    <link rel="stylesheet" href="/Product-Details.css">
+    <script src="assets/js/Animated-Pretty-Product-List-v12.js"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+        var CREATE_PAYMENT_URL  = 'http://127.0.0.1:5000/payment';
+        var EXECUTE_PAYMENT_URL = 'http://127.0.0.1:5000/execute';
+    
+        paypal.Button.render({
+    
+            env: 'sandbox', // Or 'sandbox'
+    
+            commit: true, // Show a 'Pay Now' button
+    
+            payment: function() {
+                return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
+                    return data.paymentID;
+                });
+            },
+    
+            onAuthorize: function(data) {
+                return paypal.request.post(EXECUTE_PAYMENT_URL, {
+                    paymentID: data.paymentID,
+                    payerID:   data.payerID
+                }).then(function(res) {
+    
+                    console.log(res.success)
+                    // The payment is complete!
+                    // You can now show a confirmation message to the customer
+                });
+            }
+    
+        }, '#paypal-button');
+    </script>
+    <script src="/script.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>
